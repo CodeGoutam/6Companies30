@@ -1,0 +1,40 @@
+//leetcode 150
+//You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
+
+import java.util.*; 
+class LC150 {
+  public static int evalRPN(String[] tokens) {
+      List<Integer> list=new ArrayList<>();
+          for (int i = 0; i < tokens.length; i++) {
+        try {
+list.add(Integer.parseInt(tokens[i]));          
+        } 
+        catch (Exception e) {
+          String s=tokens[i];
+          int x=list.get(list.size()-1);
+            int y=list.get(list.size()-2);
+            list.remove(list.size()-1); 
+            list.remove(list.size()-1);
+            switch (s) {
+             case "+": list.add(x+y);
+             break;
+            case "-": list.add(y-x);
+            break;
+            case "*": list.add(x*y);
+            break;
+           case "/": list.add(y/x);
+           break;
+          }
+          // System.out.println(list);
+      }
+      }
+    
+    // System.out.println(list);
+    return list.get(0);
+  }
+    public static void main(String[] args) {
+String[] tokens = {"4","13","5","/","+"};
+// evalRPN(tokens);
+System.out.println(evalRPN(tokens));
+  }
+}
